@@ -1,0 +1,30 @@
+- [x] Clean up project defaults
+- [x] configure tailwind
+- [x] Create glitch project for API
+- [x] Experiment with custom proxy and uploading built files to glitch
+- [x] Install/Configure @reach/router w/ initial views
+- [x] Create static version of Deck List View
+- [x] Deck list
+- [x] Deck form - add new deck
+- [x] Delete deck
+- [x] Toggle edit for deck
+- [x] Deck form - edit mode
+- [x] Deck overview
+- [x] Back to deck list
+- [x] Card list
+- [x] Card list
+- [x] Card form - add new card
+- [x] Delete card
+- [x] Toggle edit for card
+- [x] Card form - edit mode
+- [x] Card flip in preview
+- [x] Card Review
+- [x] Flip card
+- [x] Next Card
+- [x] Previous Card
+- [ ] Back to deck
+- [ ] Responsive card display
+
+
+- [ ] Setup Storybook, with tailwind CSS access, to build out components
+- [ ] work out Netlify publishing with API proxy and rewrite for routing to work
