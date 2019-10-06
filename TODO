@@ -22,9 +22,11 @@
 - [x] Flip card
 - [x] Next Card
 - [x] Previous Card
-- [ ] Back to deck
+- [ ] Back to deck - styling
 - [ ] Responsive card display
-
-
+- [ ] Get custom height setting working in tailwind
+- [ ] Add icons
+- [ ] Optimized setup for tailwind - strip unused classes in production output
 - [ ] Setup Storybook, with tailwind CSS access, to build out components
 - [ ] work out Netlify publishing with API proxy and rewrite for routing to work
+- [ ] Break out lesson flow
