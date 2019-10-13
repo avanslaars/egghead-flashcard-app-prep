@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from '@reach/router'
 import { Tile } from './Tile'
 import { DeckForm } from './DeckForm'
+import { SecondaryButton, DangerButton } from './Buttons'
 
 function ReadOnlyDeckPreview({ id, name, cardCount, onRemove, onEdit }) {
   function handleEdit() {
@@ -14,9 +15,9 @@ function ReadOnlyDeckPreview({ id, name, cardCount, onRemove, onEdit }) {
 
   return (
     <Tile>
-      <h3 className="font-bold underline text-xl text-blue-900">
+      <h4 className="font-bold underline text-xl text-blue-900">
         <Link to={`/deck/${id}/${encodeURIComponent(name)}`}>{name}</Link>
-      </h3>
+      </h4>
       <div className="mt-4 pb-1 flex justify-between items-end">
         <div>
           <span className="block uppercase text-blue-700 text-xs tracking-loose font-medium">
@@ -25,18 +26,8 @@ function ReadOnlyDeckPreview({ id, name, cardCount, onRemove, onEdit }) {
           <span className="font-bold text-lg">{cardCount}</span>
         </div>
         <div>
-          <button
-            className="px-2 underline text-blue-700 font-medium"
-            onClick={handleEdit}
-          >
-            edit
-          </button>
-          <button
-            className="px-2 underline text-red-700 font-medium"
-            onClick={handleRemove}
-          >
-            delete
-          </button>
+          <SecondaryButton onClick={handleEdit}>edit</SecondaryButton>
+          <DangerButton onClick={handleRemove}>delete</DangerButton>
         </div>
       </div>
     </Tile>

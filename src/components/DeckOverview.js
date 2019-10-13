@@ -33,7 +33,7 @@ export function DeckOverview({ deckId, deckName }) {
   }
   return (
     <div className="container mx-auto">
-      <h3 className="text-center text-4xl font-medium text-blue-700">
+      <h3 className="text-center text-4xl font-black text-gray-700">
         {deckName}
       </h3>
       <Router>

@@ -30,16 +30,21 @@ export function DeckList() {
   }, [])
 
   return (
-    <div className="gridContainer">
-      <DeckForm onSave={handleNewDeck} />
-      {decks.map(deck => (
-        <DeckPreview
-          key={deck.id}
-          {...deck}
-          onRemove={handleDelete}
-          onUpdate={handleDeckUpdate}
-        />
-      ))}
-    </div>
+    <>
+      <h3 className="text-center text-4xl font-medium text-blue-700">
+        Flashcard Decks
+      </h3>
+      <div className="gridContainer">
+        <DeckForm onSave={handleNewDeck} />
+        {decks.map(deck => (
+          <DeckPreview
+            key={deck.id}
+            {...deck}
+            onRemove={handleDelete}
+            onUpdate={handleDeckUpdate}
+          />
+        ))}
+      </div>
+    </>
   )
 }

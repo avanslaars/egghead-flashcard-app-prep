@@ -1,6 +1,7 @@
 import React from 'react'
 import { Tile } from './Tile'
 import { CardForm } from './CardForm'
+import { SecondaryButton, DangerButton, TertiaryButton } from './Buttons'
 
 export function CardPreview({ deckId, onSave, ...props }) {
   const [isEditMode, setIsEditMode] = React.useState(false)
@@ -42,32 +43,17 @@ function ReadOnlyCardPreview({ id, term, definition, onEdit, onRemove }) {
   }
 
   return (
-    <Tile>
-      <h3 className="mt-4 text-center font-bold text-2xl text-blue-800">
+    <Tile className={isFront ? '' : 'bg-indigo-100'}>
+      <h4 className="mt-4 text-center font-bold text-2xl text-blue-800">
         {isFront ? term : definition}
-      </h3>
+      </h4>
       <div className="pb-1 flex justify-between">
-        <div>
-          <button
-            className="px-2 text-gray-800 font-medium rounded shadow bg-blue-200"
-            onClick={flipCard}
-          >
-            flip
-          </button>
-        </div>
+        <TertiaryButton onClick={flipCard}>
+          {isFront ? 'show back' : 'show front'}
+        </TertiaryButton>
         <div className="flex items-end">
-          <button
-            className="px-2 underline text-blue-700 font-medium"
-            onClick={handleEdit}
-          >
-            edit
-          </button>
-          <button
-            className="px-2 underline text-red-700 font-medium"
-            onClick={handleRemove}
-          >
-            delete
-          </button>
+          <SecondaryButton onClick={handleEdit}>edit</SecondaryButton>
+          <DangerButton onClick={handleRemove}>delete</DangerButton>
         </div>
       </div>
     </Tile>

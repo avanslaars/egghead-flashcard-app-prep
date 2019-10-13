@@ -12,8 +12,15 @@ export function CardList(props) {
       <div className="flex justify-center text-center mt-2">
         <Link
           to="/"
-          className="py-2 text-gray-700 text-lg font-medium underline"
+          className="py-2 text-blue-700 text-lg font-bold underline flex items-center"
         >
+          <svg
+            className="w-6 h-6 fill-current mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z" />
+          </svg>
           Back to decks
         </Link>
         <Link

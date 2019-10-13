@@ -1,6 +1,6 @@
 import React from 'react'
-import { Tile } from './Tile'
 import { saveCard } from '../services'
+import { Form } from './Form'
 
 export function CardForm({ onSave, deckId, onCancel, card }) {
   const id = card ? card.id : undefined
@@ -24,8 +24,13 @@ export function CardForm({ onSave, deckId, onCancel, card }) {
     onCancel && typeof onCancel === 'function' && onCancel()
   }
 
-  function handleSubmit(event) {
-    event.preventDefault()
+  function handleKeyDown(event) {
+    if (event.metaKey && event.key === 'Enter') {
+      save()
+    }
+  }
+
+  function save() {
     saveCard({
       id,
       term: currentTerm,
@@ -35,6 +40,12 @@ export function CardForm({ onSave, deckId, onCancel, card }) {
       clearForm()
       onSave && typeof onSave === 'function' && onSave(card)
     })
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    // TODO: Handle validation - no empty submissions
+    save()
   }
 
   function handleTermChange(event) {
@@ -48,54 +59,40 @@ export function CardForm({ onSave, deckId, onCancel, card }) {
   }
 
   return (
-    <Tile>
-      <h3 className="font-bold underline text-xl text-blue-900">
-        {id ? 'Update Card' : 'Add a Card'}
-      </h3>
-      <form onReset={handleReset} onSubmit={handleSubmit}>
-        <div className="mt-2">
-          <label
-            htmlFor="cardTerm"
-            className="block uppercase tracking-loose font-medium text-xs text-blue-800"
-          >
-            Term
-          </label>
-          <textarea
-            id="cardTerm"
-            className="w-full border rounded shadow"
-            onChange={handleTermChange}
-            value={currentTerm}
-          />
-        </div>
-        <div className="mt-2">
-          <label
-            htmlFor="cardDefinition"
-            className="block uppercase tracking-loose font-medium text-xs text-blue-800"
-          >
-            Definition
-          </label>
-          <textarea
-            id="cardDefinition"
-            className="w-full border rounded shadow"
-            onChange={handleDefinitionChange}
-            value={currentDefinition}
-          />
-        </div>
-        <div className="mt-4 py-2 flex justify-end">
-          <button
-            type="submit"
-            className="px-2 text-white font-medium rounded bg-blue-700"
-          >
-            save
-          </button>
-          <button
-            type="reset"
-            className="px-2 underline text-blue-700 font-medium"
-          >
-            cancel
-          </button>
-        </div>
-      </form>
-    </Tile>
+    <Form
+      heading={id ? 'Update Card' : 'Add a Card'}
+      onReset={handleReset}
+      onSubmit={handleSubmit}
+      onKeyDown={handleKeyDown}
+    >
+      <div className="mt-2">
+        <label
+          htmlFor={`card_term_${id ? id : 'new'}`}
+          className="block uppercase tracking-loose font-medium text-xs text-blue-800"
+        >
+          Term
+        </label>
+        <textarea
+          id={`card_term_${id ? id : 'new'}`}
+          className="w-full border rounded shadow"
+          onChange={handleTermChange}
+          value={currentTerm}
+        />
+      </div>
+      <div className="mt-2">
+        <label
+          htmlFor={`card_def_${id ? id : 'new'}`}
+          className="block uppercase tracking-loose font-medium text-xs text-blue-800"
+        >
+          Definition
+        </label>
+        <textarea
+          id={`card_def_${id ? id : 'new'}`}
+          className="w-full border rounded shadow"
+          onChange={handleDefinitionChange}
+          value={currentDefinition}
+        />
+      </div>
+    </Form>
   )
 }

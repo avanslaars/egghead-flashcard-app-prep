@@ -1,6 +1,6 @@
 import React from 'react'
-import { Tile } from './Tile'
 import { saveDeck } from '../services'
+import { Form } from './Form'
 
 export function DeckForm({ onSave, onCancel, deck }) {
   const id = deck ? deck.id : undefined
@@ -30,41 +30,26 @@ export function DeckForm({ onSave, onCancel, deck }) {
   }
 
   return (
-    <Tile>
-      <h3 className="font-bold underline text-xl text-blue-900">
-        {id ? 'Update Deck' : 'Add a Deck'}
-      </h3>
-      <form onReset={handleReset} onSubmit={handleSubmit}>
-        <div className="mt-2">
-          <label
-            className="block uppercase tracking-loose font-medium text-xs text-blue-800"
-            htmlFor={id ? `deck_${id}` : 'deckName'}
-          >
-            Deck name:
-          </label>
-          <input
-            className="w-full border rounded shadow"
-            id={id ? `deck_${id}` : 'deckName'}
-            type="text"
-            onChange={handleInputChange}
-            value={currentName}
-          />
-        </div>
-        <div className="mt-4 py-2 flex justify-end">
-          <button
-            type="submit"
-            className="px-2 text-white font-medium rounded bg-blue-700"
-          >
-            save
-          </button>
-          <button
-            type="reset"
-            className="px-2 underline text-blue-700 font-medium"
-          >
-            cancel
-          </button>
-        </div>
-      </form>
-    </Tile>
+    <Form
+      heading={id ? 'Update Deck' : 'Add a Deck'}
+      onReset={handleReset}
+      onSubmit={handleSubmit}
+    >
+      <div className="mt-2">
+        <label
+          className="block uppercase tracking-loose font-medium text-xs text-blue-800"
+          htmlFor={id ? `deck_name_${id}` : 'deck_name_new'}
+        >
+          Deck name:
+        </label>
+        <input
+          className="w-full border rounded shadow"
+          id={id ? `deck_name_${id}` : 'deck_name_new'}
+          type="text"
+          onChange={handleInputChange}
+          value={currentName}
+        />
+      </div>
+    </Form>
   )
 }
